@@ -1,0 +1,38 @@
+.parent {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 100px 100px 100px 100px;
+    gap: 10px;
+}
+
+.header {
+    background-color: blueviolet;
+    grid-column: 1/4;
+    grid-row: 1/2;
+}
+
+.footer {
+    background-color: aqua;
+    grid-column: 1/4;
+}
+.sidebar {
+    background-color: burlywood;
+    grid-column: 1/2;
+    grid-row: 2/4;
+}
+
+.con1 {
+    background-color: chocolate;
+    grid-column: 2/4;
+    grid-row: 2/3;
+}
+.con2 {
+    background-color: aquamarine;
+    grid-column: 2/3;
+    grid-row: 3/4;
+}
+.con3 {
+    background-color: blanchedalmond;
+    grid-column: 3/4;
+    grid-row: 3/4;
+}

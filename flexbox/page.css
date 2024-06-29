@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.header {
+    background-color: rgb(34, 106, 137);
+    color: white;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+.header > ul {
+    width: 400px;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.header > img {
+    padding: 5px;
+}
+
+.address > ul {
+    list-style-type: none;
+}
+.contact > ul {
+    list-style-type: none;
+
+}
+.main {
+    min-height: 100vh;
+}
+
+.footer {
+    
+    display: flex;
+    align-items: end;
+    justify-content: space-around;
+    background-color: gray;
+    color: white;
+    padding: 40px;
+}

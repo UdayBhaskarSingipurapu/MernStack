@@ -1,0 +1,30 @@
+div {
+    background-color: azure;
+    max-width: 1200px;
+    height: 600px;
+    text-align: center;
+}
+h1 {
+    font-size: 4rem;
+}
+ img {
+    max-width: 500px;
+    width: 100%;
+ }
+
+@media screen and (max-width : 576px) {
+   h1 {
+    font-size: 2rem;
+   }
+}
+
+@media screen and (min-width : 577px) and (max-width : 768px) {
+  h1 {
+    font-size: 3rem;
+  }
+   
+}
+@media screen and (min-width : 769px) and (max-width : 992px) {
+
+    
+}

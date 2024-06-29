@@ -1,0 +1,27 @@
+
+get http://localhost:4000/users
+
+###
+get http://localhost:4000/users/3
+
+###
+post http://localhost:4000/user
+Content-type:application/json
+
+{
+    "id":3,
+    "name":"freefire"
+}
+
+###
+put http://localhost:4000/user
+Content-type:application/json
+
+{
+    "id":1,
+    "name":"UDAY"
+}
+
+###
+delete http://localhost:4000/user/3
+
