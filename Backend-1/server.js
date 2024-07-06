@@ -39,4 +39,3 @@ app.use("/products-api", productApp);
 //app.use(middleware1);
 // app.use(middleware2)
 
-   //assign port num to http server of express app
