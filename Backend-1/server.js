@@ -2,88 +2,41 @@
    //import and use express
    const exp=require('express');
    const app=exp();
+//import mongodb
+const {MongoClient}=require('mongodb')
+let mClient=new MongoClient('mongodb://127.0.0.1:27017')
 
-   //add body parser
-   app.use(exp.json())
+//conect database
+mClient.connect()
+ .then(()=>{ console.log("connection success")
+   app.listen(4000,()=> console.log("http server created onn prot 4000"));
+})
+ .catch(()=>console.log("can't connect"))
 
-   //test data
-   let userList=[
-    {id:1,name:'uday'},
-    {id:2,name:'bhaskar'}
-   ]
+//import userapi
+let userApp=require('./APIs/userAPI')
+let productApp=require('./APIs/productsAPI')
 
-//create sample rest api(req-handler or route)
-   //route fot GET
-   app.get('/users', (req,res)=>{
-    res.send({message:"users info", payload:userList})
-   })
-   
-   //route to get single user
-   app.get('/users/:id', (req,res)=>{
-        //get the id
-        let idurl=Number(req.params.id);
-        //search for the user by id
-        let userbyId=userList.find((user) => user.id===idurl);
-        //whether uer exists or not
-        console.log(userbyId);
-        if(userbyId===undefined){
-            res.send({message:"invalid user ID"});
-        }
-        else {
-            res.send({message:"user info", payload:userbyId});
-        }
-    })
+//if path starts with user-api then pass it to userApp
+app.use("/user-api", userApp);
+app.use("/products-api", productApp);
 
+// middlewares
 
+// const middleware1=(res,req,next)=>{
+//      console.log('middleware1 executed');
+//      next();  //if this middleware executed successfully then it will pass to next one
+//      //res.send({message:"response"}); midlewares also can send response back to client
+// }
+// const middleware2=(res,req,next)=>{
+//     console.log('middleware2 executed');
+//     next();  //if this middleware executed successfully then it will pass to next one
+//     //res.send({message:"response"}); midlewares also can send response back to client
+// }
 
 
-
-
-   //route for post
-   app.post('/user', (req,res)=>{
-    //GET USER FROM BODY
-    let newUser=req.body;
-    //push to userlist
-    userList.push(newUser);
-    //send res
-    res.send({message:"users created"})
-   })
-
-   //route for put
-   app.put('/user', (req,res)=>{
-    //get modified user obj
-    let modified=req.body;
-    //find index of modified user by id
-    let idx=userList.findIndex((user)=> user.id===modified.id);
-    //check index existed or not
-    if(idx===-1){
-        res.send({message:"user not found"})
-    } 
-    else {
-        userList[idx]=modified;
-        res.send({message:"user updated"})
-    }
-    
-   })
-
-   //route for delete
-   app.delete('/user/:id', (req,res)=>{
-    //get id of user to be deleted
-    let urlid=Number(req.params.id);
-    //find the user id index
-    let index=userList.findIndex((user)=> user.id===urlid);
-    //check index exists or not
-    if(index===-1){
-        res.send({message:"user not found"});
-    }
-    else {
-        userList.splice(index,1);
-        res.send({message:"user deleted"});
-    }
-    res.send({message:"user deleted"})
-   })
-
-
+// we should call the middlewares. These are application level middlewares
+//app.use(middleware1);
+// app.use(middleware2)
 
    //assign port num to http server of express app
-   app.listen(4000,()=> console.log("http server created onn prot 4000"));
